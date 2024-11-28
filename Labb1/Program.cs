@@ -1,16 +1,14 @@
-﻿using System.Threading.Channels;
-
-namespace Labb1;
+﻿namespace Labb1;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-
- Console.WriteLine("Välkommen till flygtidsberäknaren!");
+        Console.WriteLine("**********************************************************************");
+        Console.WriteLine("Välkommen till flygtidsberäknaren!");
         Console.WriteLine("Vilket flyg vill du se detaljerad information om? (svar med siffra)");
 
-        var consoleRunning = true;
+        bool consoleRunning = true;
 // Här använder vi en while-loop som körs tills användaren anger ett giltigt alternativ, det vill säga 1, 2 eller 3. 
 // Om användaren anger ett ogiltigt alternativ, upprepas frågan om och om igen tills ett korrekt val görs!
         while (consoleRunning)
@@ -19,7 +17,6 @@ internal class Program
             Console.WriteLine("2. New York – Stockholm");
             Console.WriteLine("3. Avsluta programmet!");
             Console.Write("Skriv ditt val här: ");
-
             // Ett enkelt try-catch-block som hanterar formatfel, det vill säga om användaren skriver in något som inte är en siffra!
             try
             {
@@ -62,8 +59,8 @@ internal class Program
     private static void DisplayFlightInfo(string depatureCity, string arivalCity, int depatureHour, int depatureMin,
         int flightHours, int flightMins, int timeDifference)
     {
-        var landingHour = depatureHour + flightHours + timeDifference;
-        var landingMin = depatureMin + flightMins;
+        int landingHour = depatureHour + flightHours + timeDifference;
+        int landingMin = depatureMin + flightMins;
 
 
         if (landingMin >= 60)
@@ -73,9 +70,8 @@ internal class Program
         }
 
         //Om timmarna överstiger 24 timmar då nollställs det här exempelvis 27 - 24 = 3 som motsvarar kl: 03:00
-        landingHour %= 24; 
+        landingHour %= 24;
         Console.WriteLine($"Avgångstiden från {depatureCity}: {depatureHour}:{depatureMin.ToString("00")}");
         Console.WriteLine($"Ankomstiden till {arivalCity}: {landingHour.ToString("00")}:{landingMin.ToString("00")}");
     }
-
 }
